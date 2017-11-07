@@ -29,5 +29,6 @@ urlpatterns = [
     url(r'^attention/', views.attention),
     url(r'^tap_ad/', views.tap_ad),
     url(r'^add_everyday/', views.add_everyday),
+    url(r'^gonggao/', views.gonggao),
 ]
 

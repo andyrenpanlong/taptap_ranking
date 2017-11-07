@@ -115,6 +115,47 @@ def tap_add_everyday(time, search):
     result = list(db[db_name].find(search_key).sort([("game_id", -1)]))
     return add_index(result)
 
+def get_gongao_list(time, search):
+    client = MongoClient('127.0.0.1', 27017)
+    db = client.local
+    db_name = time.replace("-", "")
+    # db_name = "gonggao" + str(db_name)
+    db_name = "taptap_gonggao"
+    search_key = {}
+    if search:
+        if search.isdigit():
+            search_key['game_id'] = {
+                '$regex': '.*' + search + '.*'
+            }
+        else:
+            search_key['game_name'] = {
+                '$regex': '.*' + search + '.*'
+            }
+    result = list(db[db_name].find(search_key).sort([("game_id", -1)]))
+    return add_index(result)
+
+def tap_new_installs(time, search):
+    client = MongoClient('127.0.0.1', 27017)
+    db = client.local
+    db_name = time.replace("-", "")
+    db_name = "taplist" + str(db_name) + '001'
+    search_key = {}
+    if search:
+        if search.isdigit():
+            search_key['game_id'] = {
+                '$regex': '.*' + search + '.*'
+            }
+        else:
+            search_key['game_name'] = {
+                '$regex': '.*' + search + '.*'
+            }
+    result = list(db[db_name].find(search_key))
+    result2 = []
+    for i in range(0, len(result), 1):
+        result[i]["Installs"] = int(result[i]["Installs"])
+        result2.append(result[i])
+                  # .sort([("game_id", -1)]).limit(200))
+    return add_index(result2.sort([("Installs", -1)]).limit(200))
 
 def check_name_pass(username, password):
     client = MongoClient('127.0.0.1', 27017)

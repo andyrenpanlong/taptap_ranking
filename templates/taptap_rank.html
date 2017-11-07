@@ -54,7 +54,6 @@
 					<span class="icon-bar"></span>
 				</a>
 				<a class="brand" href="/Installs"><span style="font-size: 22px;font-weight: bold;">taptap爬虫数据监控</span></a>
-
 				<!-- start: Header Menu -->
 				<div class="nav-no-collapse header-nav">
 					<ul class="nav pull-right">
@@ -91,6 +90,7 @@
 							<li><a href="/Installs"><i class="icon-bar-chart"></i><span class="hidden-tablet"> 安装量排行</span></a></li>
 						<li><a href="/reserved"><i class="icon-envelope"></i><span class="hidden-tablet"> 预约量排行</span></a></li>
 						<li><a href="/attention"><i class="icon-tasks"></i><span class="hidden-tablet"> 关注量排行</span></a></li>
+						<li><a href="/gonggao"><i class="icon-tasks"></i><span class="hidden-tablet">公告排行</span></a></li>
 						<li><a href="/tap_ad"><i class="icon-eye-open"></i><span class="hidden-tablet"> 首页广告</span></a></li>
 						<li><a href="/add_everyday"><i class="icon-leaf"></i><span class="hidden-tablet">新增游戏</span></a></li>
 						<!--<li><a href="widgets.html"><i class="icon-dashboard"></i><span class="hidden-tablet"> Widgets</span></a></li>-->
@@ -189,13 +189,8 @@
                     	</table>
 					</div>
 				</div><!--/span-->
-
 			</div><!--/row-->
-
-
-
-	</div><!--/.fluid-container-->
-
+	    </div><!--/.fluid-container-->
 			<!-- end: Content -->
 		</div><!--/#content.span10-->
 		</div><!--/fluid-row-->
@@ -299,9 +294,9 @@
 
 		$( "#datepicker" ).datepicker({
 			dateFormat: 'yy-mm-dd',
-//            defaultDate:'2017-09-12',//默认日期
+            defaultDate: curTime,//默认日期
             minDate: '2017-09-09',//最小日期
-            maxDate: '2017-09-24',//最大日期
+            maxDate: curTime,//最大日期
 			monthNames: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
             dayNames: ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],
             dayNamesShort: ['周日','周一','周二','周三','周四','周五','周六'],
@@ -328,13 +323,16 @@
 		function search_keywords() {
 			var key_words = $("#key_word_search").val() || "";
 		    if(key_words == ""){
-		        href = location.origin + location.pathname + "?time="+$("#datepicker").val();
+		        href = location.origin + location.pathname + "?time=" + $("#datepicker").val();
 			}else{
-		        href = location.origin + location.pathname + "?time="+$("#datepicker").val() + "&search=" + key_words;
+		        href = location.origin + location.pathname + "?time=" + $("#datepicker").val() + "&search=" + key_words;
 			}
 			location.href = href;
         }
 	});
 	</script>
+
+
+
 </body>
 </html>

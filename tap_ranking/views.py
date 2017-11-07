@@ -106,3 +106,20 @@ def add_everyday(request):
         return render(request, 'add_everyday.html', context)
     else:
         return HttpResponseRedirect('/login')
+
+
+def gonggao(request):
+    if request.session.get('username'):
+        times = request.GET.get("time") or time.strftime('%Y-%m-%d', time.localtime(time.time()))
+        search = request.GET.get("search") or ''
+        context = {}
+        context['tap_lists'] = search_data.get_gongao_list(times, search)
+        context['type'] = 'Installs'
+        context['time'] = times
+        context['search'] = search
+        context['username'] = request.session['username']
+        return render(request, 'gonggao.html', context)
+    else:
+        return HttpResponseRedirect('/login')
+
+
