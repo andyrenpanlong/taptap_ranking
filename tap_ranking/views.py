@@ -122,4 +122,18 @@ def gonggao(request):
     else:
         return HttpResponseRedirect('/login')
 
+def googleApk(request):
+    if request.session.get('username'):
+        search = request.GET.get("search") or ''
+        print search
+        context = {}
+        context['tap_lists'] = search_data.get_google_apk(search)
+        context['type'] = 'Installs'
+        context['search'] = search
+        context['username'] = request.session['username']
+        print "2eqeqeq", context['tap_lists']
+        return render(request, 'googleApk.html', context)
+    else:
+        return HttpResponseRedirect('/login')
+
 

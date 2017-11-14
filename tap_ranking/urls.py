@@ -30,5 +30,6 @@ urlpatterns = [
     url(r'^tap_ad/', views.tap_ad),
     url(r'^add_everyday/', views.add_everyday),
     url(r'^gonggao/', views.gonggao),
+    url(r'^googleApk/', views.googleApk),
 ]
 

@@ -1,6 +1,7 @@
 from pymongo import MongoClient
 import json
 import re
+from .apk_pure import search_game_url
 
 def add_index(result):
     lists = []
@@ -133,6 +134,10 @@ def get_gongao_list(time, search):
             }
     result = list(db[db_name].find(search_key).sort([("game_id", -1)]))
     return add_index(result)
+
+def get_google_apk(search):
+    result = search_game_url(search)
+    return result
 
 def tap_new_installs(time, search):
     client = MongoClient('127.0.0.1', 27017)
